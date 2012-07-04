@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B077B7415A4C86000DFE31C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B077B7315A4C86000DFE31C /* UIKit.framework */; };
+		3B077B7615A4C86000DFE31C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B077B7515A4C86000DFE31C /* Foundation.framework */; };
+		3B077B7815A4C86000DFE31C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B077B7715A4C86000DFE31C /* CoreGraphics.framework */; };
+		3B077B7E15A4C86000DFE31C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B077B7C15A4C86000DFE31C /* InfoPlist.strings */; };
+		3B077B8015A4C86000DFE31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B077B7F15A4C86000DFE31C /* main.m */; };
+		3B077B8415A4C86000DFE31C /* INAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B077B8315A4C86000DFE31C /* INAppDelegate.m */; };
+		3B077B8715A4C86000DFE31C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B077B8515A4C86000DFE31C /* MainStoryboard_iPhone.storyboard */; };
+		3B077B8A15A4C86000DFE31C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B077B8815A4C86000DFE31C /* MainStoryboard_iPad.storyboard */; };
+		3B077B8D15A4C86000DFE31C /* INViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B077B8C15A4C86000DFE31C /* INViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3B077B6F15A4C86000DFE31C /* JarvisEars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JarvisEars.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B077B7315A4C86000DFE31C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3B077B7515A4C86000DFE31C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3B077B7715A4C86000DFE31C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3B077B7B15A4C86000DFE31C /* JarvisEars-Info.plist */ = {isa = PBXFileReference; path = "JarvisEars-Info.plist"; sourceTree = "<group>"; };
+		3B077B7D15A4C86000DFE31C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B077B7F15A4C86000DFE31C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B077B8115A4C86000DFE31C /* JarvisEars-Prefix.pch */ = {isa = PBXFileReference; path = "JarvisEars-Prefix.pch"; sourceTree = "<group>"; };
+		3B077B8215A4C86000DFE31C /* INAppDelegate.h */ = {isa = PBXFileReference; path = INAppDelegate.h; sourceTree = "<group>"; };
+		3B077B8315A4C86000DFE31C /* INAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INAppDelegate.m; sourceTree = "<group>"; };
+		3B077B8615A4C86000DFE31C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		3B077B8915A4C86000DFE31C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		3B077B8B15A4C86000DFE31C /* INViewController.h */ = {isa = PBXFileReference; path = INViewController.h; sourceTree = "<group>"; };
+		3B077B8C15A4C86000DFE31C /* INViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B077B6C15A4C86000DFE31C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B077B7415A4C86000DFE31C /* UIKit.framework in Frameworks */,
+				3B077B7615A4C86000DFE31C /* Foundation.framework in Frameworks */,
+				3B077B7815A4C86000DFE31C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B077B6415A4C85F00DFE31C = {
+			isa = PBXGroup;
+			children = (
+				3B077B7915A4C86000DFE31C /* JarvisEars */,
+				3B077B7215A4C86000DFE31C /* Frameworks */,
+				3B077B7015A4C86000DFE31C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B077B7015A4C86000DFE31C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B077B6F15A4C86000DFE31C /* JarvisEars.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B077B7215A4C86000DFE31C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B077B7315A4C86000DFE31C /* UIKit.framework */,
+				3B077B7515A4C86000DFE31C /* Foundation.framework */,
+				3B077B7715A4C86000DFE31C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B077B7915A4C86000DFE31C /* JarvisEars */ = {
+			isa = PBXGroup;
+			children = (
+				3B077B8215A4C86000DFE31C /* INAppDelegate.h */,
+				3B077B8315A4C86000DFE31C /* INAppDelegate.m */,
+				3B077B8515A4C86000DFE31C /* MainStoryboard_iPhone.storyboard */,
+				3B077B8815A4C86000DFE31C /* MainStoryboard_iPad.storyboard */,
+				3B077B8B15A4C86000DFE31C /* INViewController.h */,
+				3B077B8C15A4C86000DFE31C /* INViewController.m */,
+				3B077B7A15A4C86000DFE31C /* Supporting Files */,
+			);
+			path = JarvisEars;
+			sourceTree = "<group>";
+		};
+		3B077B7A15A4C86000DFE31C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B077B7B15A4C86000DFE31C /* JarvisEars-Info.plist */,
+				3B077B7C15A4C86000DFE31C /* InfoPlist.strings */,
+				3B077B7F15A4C86000DFE31C /* main.m */,
+				3B077B8115A4C86000DFE31C /* JarvisEars-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B077B6E15A4C86000DFE31C /* JarvisEars */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B077B9015A4C86000DFE31C /* Build configuration list for PBXNativeTarget "JarvisEars" */;
+			buildPhases = (
+				3B077B6B15A4C86000DFE31C /* Sources */,
+				3B077B6C15A4C86000DFE31C /* Frameworks */,
+				3B077B6D15A4C86000DFE31C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JarvisEars;
+			productName = JarvisEars;
+			productReference = 3B077B6F15A4C86000DFE31C /* JarvisEars.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B077B6615A4C85F00DFE31C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IN;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 3B077B6915A4C85F00DFE31C /* Build configuration list for PBXProject "JarvisEars" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3B077B6415A4C85F00DFE31C;
+			productRefGroup = 3B077B7015A4C86000DFE31C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B077B6E15A4C86000DFE31C /* JarvisEars */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B077B6D15A4C86000DFE31C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B077B7E15A4C86000DFE31C /* InfoPlist.strings in Resources */,
+				3B077B8715A4C86000DFE31C /* MainStoryboard_iPhone.storyboard in Resources */,
+				3B077B8A15A4C86000DFE31C /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B077B6B15A4C86000DFE31C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B077B8015A4C86000DFE31C /* main.m in Sources */,
+				3B077B8415A4C86000DFE31C /* INAppDelegate.m in Sources */,
+				3B077B8D15A4C86000DFE31C /* INViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3B077B7C15A4C86000DFE31C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B077B7D15A4C86000DFE31C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3B077B8515A4C86000DFE31C /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B077B8615A4C86000DFE31C /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		3B077B8815A4C86000DFE31C /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B077B8915A4C86000DFE31C /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B077B8E15A4C86000DFE31C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B077B8F15A4C86000DFE31C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B077B9115A4C86000DFE31C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JarvisEars/JarvisEars-Prefix.pch";
+				INFOPLIST_FILE = "JarvisEars/JarvisEars-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3B077B9215A4C86000DFE31C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JarvisEars/JarvisEars-Prefix.pch";
+				INFOPLIST_FILE = "JarvisEars/JarvisEars-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B077B6915A4C85F00DFE31C /* Build configuration list for PBXProject "JarvisEars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B077B8E15A4C86000DFE31C /* Debug */,
+				3B077B8F15A4C86000DFE31C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B077B9015A4C86000DFE31C /* Build configuration list for PBXNativeTarget "JarvisEars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B077B9115A4C86000DFE31C /* Debug */,
+				3B077B9215A4C86000DFE31C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B077B6615A4C85F00DFE31C /* Project object */;
+}
