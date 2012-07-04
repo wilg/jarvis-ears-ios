@@ -56,11 +56,18 @@
 }
 
 - (void)scheduleDeliveryOfResultsRemotely:(NSDictionary *)dict {
+    
+    NSDictionary *fayeDict = [NSDictionary dictionaryWithObjectsAndKeys:dict, @"data", @"/speech", @"channel", nil];
 
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:fayeDict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSString *query = [NSString stringWithFormat:@"message=%@", json];
+    NSLog(@"query: %@", query);
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@""]];   
-    request.HTTPBody = jsonData;
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:9292/faye"]];   
+    request.HTTPBody = [query dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     
     [NSURLConnection sendAsynchronousRequest:request
@@ -261,7 +268,7 @@
 //	self.heardTextView.text = [NSString stringWithFormat:@"Heard: \"%@\"", hypothesis]; // Show it in the status box.
 	
 	// This is how to use an available instance of FliteController. We're going to repeat back the command that we heard with the voice we've chosen.
-	[self.fliteController say:[NSString stringWithFormat:@"You said %@",hypothesis] withVoice:self.secondVoiceToUse];
+//	[self.fliteController say:[NSString stringWithFormat:@"You said %@",hypothesis] withVoice:self.secondVoiceToUse];
 }
 
 #ifdef kGetNbest   
