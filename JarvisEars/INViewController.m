@@ -66,7 +66,7 @@
     NSLog(@"query: %@", query);
 
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:9292/faye"]];   
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://jarvis.local:9292/faye"]];   
     request.HTTPBody = [query dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     
