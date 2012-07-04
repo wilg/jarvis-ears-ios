@@ -125,15 +125,21 @@
 	// we put into the array as one string (e.g. "CHANGE MODEL" instead of "CHANGE" and "MODEL"). This increases the probability that they will be recognized as a phrase. This works even better starting with version 1.0 of OpenEars.
 	
 	NSArray *languageArray = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects: // All capital letters.
-                                                             @"SUNDAY",
-                                                             @"MONDAY",
-                                                             @"TUESDAY",
-                                                             @"WEDNESDAY",
-                                                             @"THURSDAY",
-                                                             @"FRIDAY",
-                                                             @"SATURDAY",
-                                                             @"QUIDNUNC",
-                                                             @"CHANGE MODEL",
+                                                             @"JARVIS",
+                                                             @"HOW ARE YOU",
+                                                             @"PLEASE",
+                                                             @"THANK YOU",
+                                                             @"ITS",
+                                                             @"WILL",
+                                                             @"GIESELER",
+                                                             @"ANDREW",
+                                                             @"FINCH",
+                                                             @"HOW LONG WILL IT TAKE ME TO",
+                                                             @"GET TO WORK",
+                                                             @"NOW",
+                                                             @"TODAY",
+                                                             @"NIGHT MODE",
+                                                             @"REFRESH",
                                                              nil]];
     
 	// The last entry, quidnunc, is an example of a word which will not be found in the lookup dictionary and will be passed to the fallback method. The fallback method is slower,
@@ -170,105 +176,29 @@
 		
 		NSLog(@"Dynamic language generator completed successfully, you can find your new files %@\n and \n%@\n at the paths \n%@ \nand \n%@", lmFile,dictionaryFile,lmPath,dictionaryPath);	
 		
-		// pathToDynamicallyGeneratedGrammar/Dictionary aren't OpenEars things, they are just the way I'm controlling being able to switch between the grammars in this sample app.
 		self.pathToDynamicallyGeneratedGrammar = lmPath; // We'll set our new .languagemodel file to be the one to get switched to when the words "CHANGE MODEL" are recognized.
 		self.pathToDynamicallyGeneratedDictionary = dictionaryPath; // We'll set our new dictionary to be the one to get switched to when the words "CHANGE MODEL" are recognized.
 	}
 	
 	
-    // Next, an informative message.
-    
-	NSLog(@"\n\nWelcome to the OpenEars sample project. This project understands the words:\nBACKWARD,\nCHANGE,\nFORWARD,\nGO,\nLEFT,\nMODEL,\nRIGHT,\nTURN,\nand if you say \"CHANGE MODEL\" it will switch to its dynamically-generated model which understands the words:\nCHANGE,\nMODEL,\nMONDAY,\nTUESDAY,\nWEDNESDAY,\nTHURSDAY,\nFRIDAY,\nSATURDAY,\nSUNDAY,\nQUIDNUNC");
-	
-	// This is how to start the continuous listening loop of an available instance of PocketsphinxController. We won't do this if the language generation failed since it will be listening for a command to change over to the generated language.
 	if(dynamicLanguageGenerationResultsDictionary) {
         
-		// startListeningWithLanguageModelAtPath:dictionaryAtPath:languageModelIsJSGF always needs to know the grammar file being used, 
-		// the dictionary file being used, and whether the grammar is a JSGF. You must put in the correct value for languageModelIsJSGF.
-		// Inside of a single recognition loop, you can only use JSGF grammars or ARPA grammars, you can't switch between the two types.
-		
-		// An ARPA grammar is the kind with a .languagemodel or .DMP file, and a JSGF grammar is the kind with a .gram file.
-        
-		// If you wanted to just perform recognition on an isolated wav file for testing, you could do it as follows:
-        
-        // NSString *wavPath = [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath], @"test.wav"];         
-        //[self.pocketsphinxController runRecognitionOnWavFileAtPath:wavPath usingLanguageModelAtPath:self.pathToGrammarToStartAppWith dictionaryAtPath:self.pathToDictionaryToStartAppWith languageModelIsJSGF:FALSE];  // Starts the recognition loop.
-        
-        // But under normal circumstances you'll probably want to do continuous recognition as follows:
-        
-        [self.pocketsphinxController startListeningWithLanguageModelAtPath:self.pathToGrammarToStartAppWith dictionaryAtPath:self.pathToDictionaryToStartAppWith languageModelIsJSGF:FALSE];
+        [self.pocketsphinxController startListeningWithLanguageModelAtPath:self.pathToDynamicallyGeneratedGrammar dictionaryAtPath:self.pathToDynamicallyGeneratedDictionary languageModelIsJSGF:FALSE];
         
 	}
     
-    
-    
-    
-	// [self startDisplayingLevels] is not an OpenEars method, just an approach for level reading
-	// that I've included with this sample app. My example implementation does make use of two OpenEars
-	// methods:	the pocketsphinxInputLevel method of PocketsphinxController and the fliteOutputLevel
-	// method of fliteController. 
-	//
-	// The example is meant to show one way that you can read those levels continuously without locking the UI, 
-	// by using an NSTimer, but the OpenEars level-reading methods 
-	// themselves do not include multithreading code since I believe that you will want to design your own 
-	// code approaches for level display that are tightly-integrated with your interaction design and the  
-	// graphics API you choose. 
-	// 
-	// Please note that if you use my sample approach, you should pay attention to the way that the timer is always stopped in
-	// dealloc. This should prevent you from having any difficulties with deallocating a class due to a running NSTimer process.
-	    
+        
 }
 
 #pragma mark -
 #pragma mark OpenEarsEventsObserver delegate methods
 
-// What follows are all of the delegate methods you can optionally use once you've instantiated an OpenEarsEventsObserver and set its delegate to self. 
-// I've provided some pretty granular information about the exact phase of the Pocketsphinx listening loop, the Audio Session, and Flite, but I'd expect 
-// that the ones that will really be needed by most projects are the following:
-//
-//- (void) pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis recognitionScore:(NSString *)recognitionScore utteranceID:(NSString *)utteranceID;
-//- (void) audioSessionInterruptionDidBegin;
-//- (void) audioSessionInterruptionDidEnd;
-//- (void) audioRouteDidChangeToRoute:(NSString *)newRoute;
-//- (void) pocketsphinxDidStartListening;
-//- (void) pocketsphinxDidStopListening;
-//
-// It isn't necessary to have a PocketsphinxController or a FliteController instantiated in order to use these methods.  If there isn't anything instantiated that will
-// send messages to an OpenEarsEventsObserver, all that will happen is that these methods will never fire.  You also do not have to create a OpenEarsEventsObserver in
-// the same class or view controller in which you are doing things with a PocketsphinxController or FliteController; you can receive updates from those objects in
-// any class in which you instantiate an OpenEarsEventsObserver and set its delegate to self.
 
-// An optional delegate method of OpenEarsEventsObserver which delivers the text of speech that Pocketsphinx heard and analyzed, along with its accuracy score and utterance ID.
 - (void) pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis recognitionScore:(NSString *)recognitionScore utteranceID:(NSString *)utteranceID {
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:hypothesis, @"hypothesis", recognitionScore, @"score", utteranceID,  @"id", nil];
-    [self scheduleDeliveryOfResultsRemotely:dict];
+    [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:dict forKey:@"phrase"]];
     
-    
-	NSLog(@"The received hypothesis is %@ with a score of %@ and an ID of %@", hypothesis, recognitionScore, utteranceID); // Log it.
-	if([hypothesis isEqualToString:@"CHANGE MODEL"]) { // If the user says "CHANGE MODEL", we will switch to the alternate model (which happens to be the dynamically generated model).
-        
-		// Here is an example of language model switching in OpenEars. Deciding on what logical basis to switch models is your responsibility.
-		// For instance, when you call a customer service line and get a response tree that takes you through different options depending on what you say to it,
-		// the models are being switched as you progress through it so that only relevant choices can be understood. The construction of that logical branching and 
-		// how to react to it is your job, OpenEars just lets you send the signal to switch the language model when you've decided it's the right time to do so.
-		
-		if(self.usingStartLanguageModel == TRUE) { // If we're on the starting model, switch to the dynamically generated one.
-			
-			// You can only change language models with ARPA grammars in OpenEars (the ones that end in .languagemodel or .DMP). 
-			// Trying to switch between JSGF models (the ones that end in .gram) will return no result.
-			[self.pocketsphinxController changeLanguageModelToFile:self.pathToDynamicallyGeneratedGrammar withDictionary:self.pathToDynamicallyGeneratedDictionary]; 
-			self.usingStartLanguageModel = FALSE;
-		} else { // If we're on the dynamically generated model, switch to the start model (this is just an example of a trigger and method for switching models).
-			[self.pocketsphinxController changeLanguageModelToFile:self.pathToGrammarToStartAppWith withDictionary:self.pathToDictionaryToStartAppWith];
-			self.usingStartLanguageModel = TRUE;
-		}
-	}
-	
-//	self.heardTextView.text = [NSString stringWithFormat:@"Heard: \"%@\"", hypothesis]; // Show it in the status box.
-	
-	// This is how to use an available instance of FliteController. We're going to repeat back the command that we heard with the voice we've chosen.
-//	[self.fliteController say:[NSString stringWithFormat:@"You said %@",hypothesis] withVoice:self.secondVoiceToUse];
 }
 
 #ifdef kGetNbest   
@@ -351,6 +281,8 @@
 // An optional delegate method of OpenEarsEventsObserver which informs that Pocketsphinx is now listening for speech.
 - (void) pocketsphinxDidStartListening {
 	
+    [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:@"StartedListening" forKey:@"notification"]];
+
 	NSLog(@"Pocketsphinx is now listening."); // Log it.
 //	self.statusTextView.text = @"Status: Pocketsphinx is now listening."; // Show it in the status box.
 //	
@@ -363,6 +295,8 @@
 // An optional delegate method of OpenEarsEventsObserver which informs that Pocketsphinx detected speech and is starting to process it.
 - (void) pocketsphinxDidDetectSpeech {
 	NSLog(@"Pocketsphinx has detected speech."); // Log it.
+    [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:@"SpeechDidBegin" forKey:@"notification"]];
+
 //	self.statusTextView.text = @"Status: Pocketsphinx has detected speech."; // Show it in the status box.
 }
 
@@ -371,6 +305,8 @@
 // this method being called and the hypothesis being returned.
 - (void) pocketsphinxDidDetectFinishedSpeech {
 	NSLog(@"Pocketsphinx has detected a second of silence, concluding an utterance."); // Log it.
+    [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:@"SpeechDidEnd" forKey:@"notification"]];
+
 //	self.statusTextView.text = @"Status: Pocketsphinx has detected finished speech."; // Show it in the status box.
 }
 
