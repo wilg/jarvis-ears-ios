@@ -28,6 +28,12 @@
 	
 	// Our NSTimer that will help us read and display the input and output levels without locking the UI
 	NSTimer *uiUpdateTimer;
+    
+    Float32 currentVolume;
+    
+    Float32 lastPeakVolume;
+    
+    BOOL recordVolume;
 }
 
 // These three are the important OpenEars objects that this class demonstrates the use of.
@@ -47,6 +53,9 @@
 // Things which will help us to show off the dynamic voice feature
 @property (nonatomic, copy) NSString *firstVoiceToUse;
 @property (nonatomic, copy) NSString *secondVoiceToUse;
+
+// Our NSTimer that will help us read and display the input and output levels without locking the UI
+@property (nonatomic, strong) 	NSTimer *uiUpdateTimer;
 
 
 @end

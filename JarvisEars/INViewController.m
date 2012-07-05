@@ -16,6 +16,7 @@
 @synthesize pathToDynamicallyGeneratedDictionary;
 @synthesize firstVoiceToUse;
 @synthesize secondVoiceToUse;
+@synthesize uiUpdateTimer;
 
 #define kLevelUpdatesPerSecond 18 // We'll have the ui update 18 times a second to show some fluidity without hitting the CPU too hard.
 
@@ -126,6 +127,7 @@
 	
 	NSArray *languageArray = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects: // All capital letters.
                                                              @"JARVIS",
+                                                             @"COMPUTER",
                                                              @"PLEASE",
                                                              @"ITS",
                                                              @"WILL",
@@ -185,6 +187,9 @@
         
 	}
     
+    
+    [self startDisplayingLevels];
+
         
 }
 
@@ -193,8 +198,8 @@
 
 
 - (void) pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis recognitionScore:(NSString *)recognitionScore utteranceID:(NSString *)utteranceID {
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:hypothesis, @"hypothesis", recognitionScore, @"score", utteranceID,  @"id", nil];
+    NSString *db = [NSString stringWithFormat:@"%i dB peak", (int)lastPeakVolume];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:hypothesis, @"hypothesis", recognitionScore, @"score", utteranceID,  @"id", db, @"volume", nil];
     [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:dict forKey:@"phrase"]];
     
 }
@@ -294,6 +299,8 @@
 - (void) pocketsphinxDidDetectSpeech {
 	NSLog(@"Pocketsphinx has detected speech."); // Log it.
     [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:@"SpeechDidBegin" forKey:@"notification"]];
+    lastPeakVolume = -2000;
+    recordVolume = YES;
 
 //	self.statusTextView.text = @"Status: Pocketsphinx has detected speech."; // Show it in the status box.
 }
@@ -304,6 +311,7 @@
 - (void) pocketsphinxDidDetectFinishedSpeech {
 	NSLog(@"Pocketsphinx has detected a second of silence, concluding an utterance."); // Log it.
     [self scheduleDeliveryOfResultsRemotely:[NSDictionary dictionaryWithObject:@"SpeechDidEnd" forKey:@"notification"]];
+    recordVolume = NO;
 
 //	self.statusTextView.text = @"Status: Pocketsphinx has detected finished speech."; // Show it in the status box.
 }
@@ -357,6 +365,30 @@
 - (void) pocketSphinxContinuousSetupDidFail { // This can let you know that something went wrong with the recognition loop startup. Turn on OPENEARSLOGGING to learn why.
 	NSLog(@"Setting up the continuous recognition loop has failed for some reason, please turn on OPENEARSLOGGING in OpenEarsConfig.h to learn more."); // Log it.
 //	self.statusTextView.text = @"Status: Not possible to start recognition loop."; // Show it in the status box.	
+}
+
+- (void) startDisplayingLevels { // Start displaying the levels using a timer
+	[self stopDisplayingLevels]; // We never want more than one timer valid so we'll stop any running timers first.
+	self.uiUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/kLevelUpdatesPerSecond target:self selector:@selector(updateLevelsUI) userInfo:nil repeats:YES];
+}
+
+- (void) stopDisplayingLevels { // Stop displaying the levels by stopping the timer if it's running.
+	if(self.uiUpdateTimer && [self.uiUpdateTimer isValid]) { // If there is a running timer, we'll stop it here.
+		[self.uiUpdateTimer invalidate];
+		self.uiUpdateTimer = nil;
+	}
+}
+
+- (void) updateLevelsUI { // And here is how we obtain the levels.  This method includes the actual OpenEars methods and uses their results to update the UI of this view controller.
+    
+    if (recordVolume && currentVolume > lastPeakVolume) {
+        lastPeakVolume = currentVolume;
+    }
+    
+    currentVolume = [self.pocketsphinxController pocketsphinxInputLevel];
+    
+	NSLog(@"%@", [NSString stringWithFormat:@"Pocketsphinx Input level:%f", currentVolume]);
+
 }
 
 
