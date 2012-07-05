@@ -126,19 +126,17 @@
 	
 	NSArray *languageArray = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects: // All capital letters.
                                                              @"JARVIS",
-                                                             @"HOW ARE YOU",
                                                              @"PLEASE",
-                                                             @"THANK YOU",
                                                              @"ITS",
                                                              @"WILL",
                                                              @"GIESELER",
                                                              @"ANDREW",
                                                              @"FINCH",
-                                                             @"HOW LONG WILL IT TAKE ME TO",
-                                                             @"GET TO WORK",
-                                                             @"NOW",
-                                                             @"TODAY",
+                                                             @"ITS ANDREW",
+                                                             @"ITS WILL",
                                                              @"NIGHT MODE",
+                                                             @"DAY MODE",
+                                                             @"BEDTIME",
                                                              @"REFRESH",
                                                              nil]];
     
